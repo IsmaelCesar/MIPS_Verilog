@@ -1,19 +1,19 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
- * Unidade Lógica e Aritmética - ULA - de 32 bits.
+ * Unidade Lï¿½gica e Aritmï¿½tica - ULA - de 32 bits.
  *
- * @author André Aziz (andre.caraujo@ufrpe.br)
+ * @author Andrï¿½ Aziz (andre.caraujo@ufrpe.br)
  */
 
 module ULA (
   A,   	       // Operando A
   B,           // Operando B
   S,           // Resultado
-  OP,          // Seleção da operação
-  Z            // Indica que o resultado é zero.
+  OP,          // Seleï¿½ï¿½o da operaï¿½ï¿½o
+  Z            // Indica que o resultado ï¿½ zero.
 );
 
 input [31:0] A;
@@ -66,6 +66,11 @@ always @ (A or B or OP) begin : operacoes_ula
     S = ~(A | B);
   end
 
+  // S = A ^ B 
+  4'b0011: begin
+	 S = A ^ B;
+  end
+  
   default: begin
     S = 0;
   end

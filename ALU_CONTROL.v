@@ -1,11 +1,11 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
  * Controle da ULA
  *
- * @author André Aziz (andre.caraujo@ufrpe.br)
+ * @author Andrï¿½ Aziz (andre.caraujo@ufrpe.br)
  */
 module ALU_CONTROL (
   funct,
@@ -23,10 +23,11 @@ wire [3:0] control;
 
 assign control = (op == 2'b00) ? 4'b0010 :
                  (op == 2'b01) ? 4'b0110 :
-                 (op == 2'b10 && funct == 6'b100000) ? 4'b0010 :
+                 (op == 2'b10 && funct == 6'b100101) ? 4'b0001 :
+					  (op == 2'b10 && funct == 6'b100110) ? 4'b0011 : //XOR
+					  (op == 2'b10 && funct == 6'b100000) ? 4'b0010 :
                  (op == 2'b10 && funct == 6'b100010) ? 4'b0110 :
                  (op == 2'b10 && funct == 6'b100100) ? 4'b0000 :
-                 (op == 2'b10 && funct == 6'b100101) ? 4'b0001 :
                  (op == 2'b10 && funct == 6'b101010) ? 4'b0111 :
                   4'b0000;
 
