@@ -1,11 +1,11 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
  * MIPS Top Level
  *
- * @author André Aziz (andre.caraujo@ufrpe.br)
+ * @author Andrï¿½ Aziz (andre.caraujo@ufrpe.br)
  */
 module MIPS (
   clk, 
@@ -88,6 +88,15 @@ REGISTER pc (
 IMEM imem (
   .address(PC_out),
   .instruction(IMEM_instr)
+);
+
+//Primeira tentativa de implementaÃ§ao PC+4 
+INSTRUCTION_FETCH pc_plus_4(
+	.clk(clk),
+	.rst(),
+	.pc_out(PC_out),
+	.constant_4(FOUR_CONST),
+	.adder_pc_4(PC_out)
 );
 
 MUX21 #(
