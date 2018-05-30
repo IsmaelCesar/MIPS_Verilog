@@ -23,6 +23,11 @@ output [31:0] S;
 output Z;
 
 wire signed [31:0] A, B;
+
+
+wire unsigned [31:0] C,D;
+reg unsigned [31:0] E;
+
 wire [3:0] OP;
 reg signed [31:0] S;
 reg Z;

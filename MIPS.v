@@ -125,6 +125,10 @@ SIGN_EXTEND sign_extend (
   .O(SIGN_EXTEND_out)
 );
 
+
+
+
+
 MUX21 mux_alu_src_reg_imm (
   .A(REGISTER_BANK_read_data_2_out),
   .B(SIGN_EXTEND_out),
