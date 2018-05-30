@@ -8,7 +8,7 @@
 * Ismael Cesar
 */
 
-module INSTRUCTION_FETCH(clk,rst,pc_out,constant_4,adder_pc_4);
+module INSTRUCTION_FETCH(clk,nrst,pc_out,constant_4,adder_pc_4);
 
 input clk;
 input rst;
@@ -27,7 +27,7 @@ reg [31:0]adder_pc_4;
 always@(posedge clk)
 begin
 	//Caso o reset for igual a zero
-	if(rst!= 0) 
+	if(rst!= 1) 
 	begin
 		adder_pc_4 = pc_out + constant_4;
 	end

@@ -93,7 +93,7 @@ IMEM imem (
 //Primeira tentativa de implementaçao PC+4 
 INSTRUCTION_FETCH pc_plus_4(
 	.clk(clk),
-	.rst(),
+	.nrst(nrst),
 	.pc_out(PC_out),
 	.constant_4(FOUR_CONST),
 	.adder_pc_4(PC_out)
