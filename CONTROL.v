@@ -16,6 +16,22 @@
 `define OPCODE_BNE    6'b000101
 `define OPCODE_J      6'b000010
 
+//Outros OPCODES de intruçoes do tipo I
+`define OPCODE_ORI    6'b001101
+`define OPCODE_ANDI   6'b001100
+`define OPCODE_SLTI   6'b001010
+		//Opcodes para dados unsigned
+`define OPCODE_ADDIU  6'b001001
+
+
+		//Outros tipos de Stores and Loads
+`define OPCODE_SB     6'b101001
+`define OPCODE_SH     6'b101000
+`define OPCODE_LHU    6'b100101
+`define OPCODE_LBU    6'b001111
+
+
+
 
 `define ALUOP_ADDI   2'b00
 `define ALUOP_LW     2'b00
