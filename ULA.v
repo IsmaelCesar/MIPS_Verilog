@@ -38,6 +38,20 @@ initial begin
 end
 	
 always @ (A or B or OP) begin : operacoes_ula
+	
+	//Fazendo atribuiçoes para registradores usigned
+	if(A < 32'h0)begin
+		C = -A
+	 end
+	 else begin
+		C = A
+	 end
+	 if(B < 32'h0)begin
+		D = -B
+	 end
+	 else begin
+		D = B
+	 end
 
   case (OP)
 		  
@@ -74,6 +88,22 @@ always @ (A or B or OP) begin : operacoes_ula
   // S = A ^ B 
   4'b0011: begin
 	 S = A ^ B;
+  end
+  
+  //Operaçoes que são unsigned
+  //S = unsigned A + B 
+  4'b0100: begin 	 
+	 S = C + D;
+  end
+  
+  //S = unsigned A - B 
+  4'b0101: begin 
+	 S = C - D;
+  end
+  
+  //S = unsigned (A < B)? 1 : 0; 
+  4'b0110: begin 
+	 S =  (C < D)? 1 : 0;
   end
   
   default: begin
