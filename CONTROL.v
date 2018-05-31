@@ -27,8 +27,11 @@
 		//Outros tipos de Stores and Loads
 `define OPCODE_SB     6'b101001
 `define OPCODE_SH     6'b101000
+`define OPCODE_LH     6'b100001
+`define OPCODE_LB     6'b100000	
 `define OPCODE_LHU    6'b100101
-`define OPCODE_LBU    6'b001111
+`define OPCODE_LBU    6'b100100
+`define OPCODE_LUI    6'b001111
 
 
 
