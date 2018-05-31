@@ -33,9 +33,6 @@
 `define OPCODE_LBU    6'b100100
 `define OPCODE_LUI    6'b001111
 
-
-
-
 `define ALUOP_ADDI   2'b00
 `define ALUOP_LW     2'b00
 `define ALUOP_SW     2'b00
