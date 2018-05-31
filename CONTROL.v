@@ -1,11 +1,11 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
  * Controle
  *
- * @author André Aziz (andre.caraujo@ufrpe.br)
+ * @author Andrï¿½ Aziz (andre.caraujo@ufrpe.br)
  */
 
 `define OPCODE_TIPO_R 6'b000000
@@ -13,7 +13,9 @@
 `define OPCODE_LW     6'b100011
 `define OPCODE_SW     6'b101011
 `define OPCODE_BEQ    6'b000100
+`define OPCODE_BNE    6'b000101
 `define OPCODE_J      6'b000010
+
 
 `define ALUOP_ADDI   2'b00
 `define ALUOP_LW     2'b00
@@ -147,6 +149,19 @@ always @(nrst, opcode) begin : decode_thread
     `OPCODE_BEQ: begin
       branch 			= 1;
       read_mem 			= 0;
+      write_mem 		= 0;
+      write_reg 		= 0;
+      alu_op 			= `ALUOP_BEQ;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 0;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 1;
+      mux_reg_src_alu_mem 	= 0;  
+    end
+	 
+	 `OPCODE_BNE: begin
+      branch 			= 1;
+      read_mem 		= 0;
       write_mem 		= 0;
       write_reg 		= 0;
       alu_op 			= `ALUOP_BEQ;
