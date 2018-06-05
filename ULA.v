@@ -39,7 +39,7 @@ end
 	
 always @ (A or B or OP) begin : operacoes_ula
 	
-	//Fazendo atribuiçoes para registradores usigned
+	//Fazendo atribuiçoes para registradores usigned *GAMBIARRA!!!!!
 	if(A < 32'h0)begin
 		C = -A
 	 end
@@ -104,6 +104,16 @@ always @ (A or B or OP) begin : operacoes_ula
   //S = unsigned (A < B)? 1 : 0; 
   4'b0110: begin 
 	 S =  (C < D)? 1 : 0;
+  end
+  
+  // S = A * B
+  4'b1000:begin
+	 S = A  * B;
+  end
+  
+  //S = unsigned A * B
+  4'b1001:begin
+	 S = C * B;
   end
   
   default: begin

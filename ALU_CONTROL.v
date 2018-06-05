@@ -29,9 +29,11 @@ assign control = (op == 2'b00) ? 4'b0010 :
                  (op == 2'b10 && funct == 6'b100010) ? 4'b0110 :
                  (op == 2'b10 && funct == 6'b100100) ? 4'b0000 :
                  (op == 2'b10 && funct == 6'b101010) ? 4'b0111 :
+					  (op == 2'b10 && funct == 6'b101011) ? 4'b1000 : //mult
 					  (op == 2'b10 && funct == 6'b100001) ? 4'b0100 : //addu
 					  (op == 2'b10 && funct == 6'b100011) ? 4'b0101 : //subu
 					  (op == 2'b10 && funct == 6'b101011) ? 4'b0110 : //sltu
+					  (op == 2'b10 && funct == 6'b101011) ? 4'b1001 : //multu
                   4'b0000;
 
 endmodule
