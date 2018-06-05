@@ -9,7 +9,7 @@
  */
 
 module ULA (
-  A,   	       // Operando A
+  A,   	      // Operando A
   B,           // Operando B
   S,           // Resultado
   OP,          // Sele��o da opera��o

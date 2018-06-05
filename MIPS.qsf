@@ -63,3 +63,4 @@ set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
 set_global_assignment -name VERILOG_FILE Verilog1.v
 set_global_assignment -name VERILOG_FILE INSTRUCTION_FETCH.v
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
