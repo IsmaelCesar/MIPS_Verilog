@@ -20,9 +20,9 @@
 `define OPCODE_ORI    6'b001101
 `define OPCODE_ANDI   6'b001100
 `define OPCODE_SLTI   6'b001010
+`define OPCODE_SLTIU  6'b001011
 		//Opcodes para dados unsigned
 `define OPCODE_ADDIU  6'b001001
-
 
 		//Outros tipos de Stores and Loads
 `define OPCODE_SB     6'b101001
@@ -33,11 +33,11 @@
 `define OPCODE_LBU    6'b100100
 `define OPCODE_LUI    6'b001111
 
-`define ALUOP_ADDI   2'b00
-`define ALUOP_LW     2'b00
-`define ALUOP_SW     2'b00
-`define ALUOP_BEQ    2'b01
-`define ALUOP_TIPO_R 2'b10
+`define ALUOP_ADDI    6'b000000
+`define ALUOP_LW      6'b000000
+`define ALUOP_SW      6'b000000
+`define ALUOP_BEQ     6'b000001
+`define ALUOP_TIPO_R  6'b000010
 
 module CONTROL(
   nrst,
@@ -75,7 +75,7 @@ reg write_mem;
 reg write_reg;
 reg  mux_write_rt_rd;
 reg mux_alu_src_reg_imm;
-reg [1:0] alu_op;
+reg [5:0] alu_op;
 reg mux_branch_jump;
 reg mux_pc_branch;
 reg mux_reg_src_alu_mem;
@@ -188,7 +188,58 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
     end
 		
+	//Implementando as instruçoes tipo I
+	`OPCODE_ORI: begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 0;
+      write_reg 		= 1;
+      alu_op 			= `OPCODE_ORI;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 1;  
+    end
+	 
+	 `OPCODE_ANDI: begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 0;
+      write_reg 		= 1;
+      alu_op 			= `OPCODE_ANDI;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 1;  
+    end
 	
+	`OPCODE_SLTI: begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 0;
+      write_reg 		= 1;
+      alu_op 			= `OPCODE_SLTI;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 1;  
+    end
+	 
+	 `OPCODE_SLTIU: begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 0;
+      write_reg 		= 1;
+      alu_op 			= `OPCODE_SLTIU;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 1;  
+    end
 		
     `OPCODE_J: begin
       branch 			= 0;
