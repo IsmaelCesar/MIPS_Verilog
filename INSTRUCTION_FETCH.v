@@ -8,14 +8,14 @@
 * Ismael Cesar
 */
 
-module INSTRUCTION_FETCH(clk,nrst,pc_out,constant_4,adder_pc_4);
+module INSTRUCTION_FETCH(clk,rst,pc_out,constant_4,adder_pc_4);
 
 input clk;
 input rst;
 input pc_out;
 input constant_4;
 
-output adder_pc_4
+output adder_pc_4;
 
 wire clk;
 wire rst;

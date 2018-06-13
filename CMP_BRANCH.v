@@ -14,16 +14,16 @@
 
 module CMP_BRANCH(branch,Z,S);
 
+input branch;
+input Z;
+
 wire branch;
 wire Z;
 
-input branch;
-input branch;
-
 reg S;
 output S;
-
-assign S = ((branch && Z) || (branch && !Z));
-	
+always@* begin
+	S = ((branch & Z) || (branch & !Z));
+end	
 
 endmodule

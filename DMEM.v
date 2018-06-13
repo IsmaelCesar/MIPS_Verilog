@@ -1,11 +1,11 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
- * Memória de dados.
+ * Memï¿½ria de dados.
  *
- * @author André Aziz (andreaziz@deinfo.ufrpe.br)
+ * @author Andrï¿½ Aziz (andreaziz@deinfo.ufrpe.br)
  */
  
 module DMEM (
@@ -17,7 +17,7 @@ module DMEM (
   address
 );
 
-parameter SIZE = 32'h8000;
+parameter SIZE = 32'h0003;
 
 input clk;
 input write_data;

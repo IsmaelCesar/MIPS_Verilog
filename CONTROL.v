@@ -176,14 +176,14 @@ always @(nrst, opcode) begin : decode_thread
     end
 	 
 	 `OPCODE_BNE: begin
-      branch 			= 0;//Fio que vai para o a porta and para ser comparado com o ZERO da ula
+      branch 			= 1;//Fio que vai para o a porta and para ser comparado com o ZERO da ula
       read_mem 		= 0;
       write_mem 		= 0;
       write_reg 		= 0;
       alu_op 			= `ALUOP_BEQ;
       mux_write_rt_rd 		= 0;
       mux_alu_src_reg_imm 	= 0;
-      mux_branch_jump 		= 0;
+      mux_branch_jump 		= 1;
       mux_pc_branch 		= 1;
       mux_reg_src_alu_mem 	= 0;  
     end

@@ -144,6 +144,15 @@ ULA ula (
   .Z(ULA_zero)            
 );
 
+
+//Comparador branch
+CMP_BRANCH branch_type_comarator(
+	.branch(CONTROL_branch),
+	.Z(ULA_zero),
+	.S(CONTROL_branch)
+);
+
+
 ALU_CONTROL alu_control (
   .funct(IMEM_instr[5:0]),
   .op(CONTROL_alu_op),
