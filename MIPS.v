@@ -1,11 +1,11 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
  * MIPS Top Level
  *
- * @author André Aziz (andre.caraujo@ufrpe.br)
+ * @author Andrï¿½ Aziz (andre.caraujo@ufrpe.br)
  */
 module MIPS (
   clk, 
@@ -56,7 +56,7 @@ wire CONTROL_write_mem;
 wire CONTROL_write_reg;
 wire CONTROL_mux_write_rt_rd;
 wire CONTROL_mux_alu_src_reg_imm;
-wire [1:0] CONTROL_alu_op;
+wire [5:0] CONTROL_alu_op;
 wire CONTROL_mux_branch_jump;
 wire CONTROL_mux_pc_branch;
 wire CONTROL_mux_reg_src_alu_mem;
@@ -90,6 +90,15 @@ IMEM imem (
   .instruction(IMEM_instr)
 );
 
+//Primeira tentativa de implementaÃ§ao PC+4 
+/*INSTRUCTION_FETCH pc_plus_4(
+	.clk(clk),
+	.nrst(nrst),
+	.pc_out(PC_out),
+	.constant_4(FOUR_CONST),
+	.adder_pc_4(PC_out)
+);*/
+
 MUX21 #(
   .DATA_WIDTH(5)
 ) 
@@ -115,6 +124,10 @@ SIGN_EXTEND sign_extend (
   .A(IMEM_instr[15:0]),
   .O(SIGN_EXTEND_out)
 );
+
+
+
+
 
 MUX21 mux_alu_src_reg_imm (
   .A(REGISTER_BANK_read_data_2_out),

@@ -1,19 +1,19 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
- * Unidade Lógica e Aritmética - ULA - de 32 bits.
+ * Unidade Lï¿½gica e Aritmï¿½tica - ULA - de 32 bits.
  *
- * @author André Aziz (andre.caraujo@ufrpe.br)
+ * @author Andrï¿½ Aziz (andre.caraujo@ufrpe.br)
  */
 
 module ULA (
-  A,   	       // Operando A
+  A,   	      // Operando A
   B,           // Operando B
   S,           // Resultado
-  OP,          // Seleção da operação
-  Z            // Indica que o resultado é zero.
+  OP,          // Seleï¿½ï¿½o da operaï¿½ï¿½o
+  Z            // Indica que o resultado ï¿½ zero.
 );
 
 input [31:0] A;
@@ -23,6 +23,11 @@ output [31:0] S;
 output Z;
 
 wire signed [31:0] A, B;
+
+
+wire unsigned [31:0] C,D;
+//reg unsigned [31:0] E;
+
 wire [3:0] OP;
 reg signed [31:0] S;
 reg Z;
@@ -33,6 +38,20 @@ initial begin
 end
 	
 always @ (A or B or OP) begin : operacoes_ula
+	
+	//Fazendo atribuiÃ§oes para registradores usigned *GAMBIARRA!!!!!
+	if(A < 32'h0)begin
+		C = -A
+	 end
+	 else begin
+		C = A
+	 end
+	 if(B < 32'h0)begin
+		D = -B
+	 end
+	 else begin
+		D = B
+	 end
 
   case (OP)
 		  
@@ -66,6 +85,37 @@ always @ (A or B or OP) begin : operacoes_ula
     S = ~(A | B);
   end
 
+  // S = A ^ B 
+  4'b0011: begin
+	 S = A ^ B;
+  end
+  
+  //OperaÃ§oes que sÃ£o unsigned
+  //S = unsigned A + B 
+  4'b0100: begin 	 
+	 S = C + D;
+  end
+  
+  //S = unsigned A - B 
+  4'b0101: begin 
+	 S = C - D;
+  end
+  
+  //S = unsigned (A < B)? 1 : 0; 
+  4'b0110: begin 
+	 S =  (C < D)? 1 : 0;
+  end
+  
+  // S = A * B
+  4'b1000:begin
+	 S = A  * B;
+  end
+  
+  //S = unsigned A * B
+  4'b1001:begin
+	 S = C * B;
+  end
+  
   default: begin
     S = 0;
   end
