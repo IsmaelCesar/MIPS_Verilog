@@ -30,7 +30,7 @@ wire [31:0] MUX_PC_BRANCH_out;
 wire [31:0] MUX_BRANCH_JUMP_out;
 wire [31:0] MUX_ALU_SRC_REG_IMM_out;
 wire [31:0] MUX_REG_SRC_ALU_MEM_out;
-wire [4:0] MUX_WRITE_RS_RD_out;
+wire [4:0] MUX_WRITE_RT_RD_out;
 
 wire [31:0] REGISTER_BANK_read_data_1_out;
 wire [31:0] REGISTER_BANK_read_data_2_out;
@@ -102,10 +102,10 @@ IMEM imem (
 MUX21 #(
   .DATA_WIDTH(5)
 ) 
-mux_write_rs_rd (
+mux_write_rt_rd (
   .A(IMEM_instr[20:16]),
   .B(IMEM_instr[15:11]),
-  .O(MUX_WRITE_RS_RD_out),
+  .O(MUX_WRITE_RT_RD_out),
   .S(CONTROL_mux_write_rt_rd)
 );
 
@@ -113,7 +113,7 @@ REGISTER_BANK register_bank (
   .clk(clk),
   .write(CONTROL_write_reg),
   .write_data(MUX_REG_SRC_ALU_MEM_out),
-  .write_address(MUX_WRITE_RS_RD_out),
+  .write_address(MUX_WRITE_RT_RD_out),
   .read_address_1(IMEM_instr[25:21]),
   .read_address_2(IMEM_instr[20:16]),
   .read_data_1(REGISTER_BANK_read_data_1_out),
@@ -124,9 +124,6 @@ SIGN_EXTEND sign_extend (
   .A(IMEM_instr[15:0]),
   .O(SIGN_EXTEND_out)
 );
-
-
-
 
 
 MUX21 mux_alu_src_reg_imm (
