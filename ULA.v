@@ -118,7 +118,7 @@ always @ (A or B or OP) begin : operacoes_ula
   
   //Se for break 
   4'b1111:begin
-	 $finish(1);
+	 $finish;
   end
   
   default: begin
