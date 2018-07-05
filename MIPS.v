@@ -99,7 +99,7 @@ IMEM imem (
 	.adder_pc_4(PC_out)
 );*/
 
-MUX21 #(
+MUX31 #(
   .DATA_WIDTH(5)
 ) 
 mux_write_rt_rd (
