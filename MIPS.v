@@ -60,7 +60,7 @@ wire [5:0] CONTROL_alu_op;
 wire CONTROL_mux_branch_jump;
 wire CONTROL_mux_pc_branch;
 wire CONTROL_mux_reg_src_alu_mem;
-wire CONTROL_mux_j_type_addr_to_write
+wire CONTROL_mux_j_type_addr_to_write;
 
 assign FOUR_CONST = 4;
 
@@ -76,7 +76,7 @@ CONTROL control (
   .alu_op(CONTROL_alu_op),
   .mux_branch_jump(CONTROL_mux_branch_jump),
   .mux_pc_branch(CONTROL_mux_pc_branch),
-  .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem).
+  .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem),
   .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write)
 );
 

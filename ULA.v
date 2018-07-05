@@ -116,6 +116,11 @@ always @ (A or B or OP) begin : operacoes_ula
 	 S = C * B;
   end
   
+  //Se for break 
+  4'b1111:begin
+	 $finish(1);
+  end
+  
   default: begin
     S = 0;
   end
