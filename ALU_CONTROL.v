@@ -42,6 +42,7 @@ assign control = (op == 6'b000000) ? 4'b0010 :
 					  (op == 6'b00010 && funct == 6'b100011) ? 4'b0101 : //subu
 					  (op == 6'b00010 && funct == 6'b101011) ? 4'b0110 : //sltu
 					  (op == 6'b00010 && funct == 6'b101011) ? 4'b1001 : //multu
+					  (op == 6'b00010 && funct == 6'b001000) ? 4'b0010 : //jr, faz um $pc <- $ra
                   4'b0000;
 
 endmodule

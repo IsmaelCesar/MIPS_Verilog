@@ -60,6 +60,7 @@ wire [5:0] CONTROL_alu_op;
 wire CONTROL_mux_branch_jump;
 wire CONTROL_mux_pc_branch;
 wire CONTROL_mux_reg_src_alu_mem;
+wire CONTROL_mux_j_type_addr_to_write
 
 assign FOUR_CONST = 4;
 
@@ -75,7 +76,8 @@ CONTROL control (
   .alu_op(CONTROL_alu_op),
   .mux_branch_jump(CONTROL_mux_branch_jump),
   .mux_pc_branch(CONTROL_mux_pc_branch),
-  .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem)
+  .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem).
+  .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write)
 );
 
 REGISTER pc (
@@ -199,6 +201,14 @@ MUX21 mux_pc_branch (
 SHIFT_LEFT_2 shift_jump (
   .A({6'b000000, IMEM_instr[25:0]}),
   .O(SHIFT_JUMP_out)
+);
+
+//Caso seja uma instrução de JAL O pc+4 irá para o write data
+MUX21 j_type_addr_to_write(
+	.A(PC_out),
+	.B(MUX_REG_SRC_ALU_MEM_out),
+	.O(MUX_REG_PC_ALU_MEM_OUT),
+	.S(CONTROL_mux_j_type_addr_to_write)
 );
 
 MUX21 branch_jump (

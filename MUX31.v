@@ -31,10 +31,10 @@ output O;
 
 wire [DATA_WIDTH-1:0] A;
 wire [DATA_WIDTH-1:0] B;
-reg  [DATA_WIDTH-1:0] O;
+wire  [DATA_WIDTH-1:0] O;
 wire [SIGNAL_WIDTH-1:0]S;
 
-assign O = (S == 2'h0)? A: (S == 2'h1)? B : RETURN_ADDRES_REG_NUMBER;
+assign O = (S == 2'h0)? A: (S == 2'h1)? B : `RETURN_ADDRES_REG_NUMBER;
 
 
 endmodule
