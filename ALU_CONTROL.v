@@ -21,7 +21,7 @@ wire [5:0] funct;
 wire [5:0] op;
 wire [3:0] control;
 
-assign control = (op == 6'b000000) ? 4'b0010 :
+assign control = (op == 6'b000000) ? 4'b0010 : // LW & ADDI
                  (op == 6'b000001) ? 4'b0110 :
 						//Tipo I -> O próprio OP code da instruçao é utilizado
 					  (op == 6'b001101) ? 4'b0001 : //ori

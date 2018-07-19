@@ -102,10 +102,10 @@ IMEM imem (
 	.adder_pc_4(PC_out)
 );*/
 
-MUX31 #(
+/*MUX31 #(
   .DATA_WIDTH(5)
-) 
-mux_write_rt_rd (
+);*/ 
+MUX21 mux_write_rt_rd (
   .A(IMEM_instr[20:16]),
   .B(IMEM_instr[15:11]),
   .O(MUX_WRITE_RT_RD_out),
