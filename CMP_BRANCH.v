@@ -12,7 +12,11 @@
 */
 
 
-module CMP_BRANCH(branch,Z,S);
+module CMP_BRANCH(
+	branch,
+	Z,
+	S
+);
 
 input branch;
 input Z;
