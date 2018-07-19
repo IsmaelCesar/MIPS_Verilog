@@ -81,6 +81,12 @@ CONTROL control (
   .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write)
 );
 
+
+IMEM imem (
+  .address(PC_out),
+  .instruction(IMEM_instr)
+);
+
 REGISTER pc (
   .clk(clk),
   .nrst(nrst),
@@ -88,10 +94,6 @@ REGISTER pc (
   .O(PC_out)
 );
 
-IMEM imem (
-  .address(PC_out),
-  .instruction(IMEM_instr)
-);
 
 //Primeira tentativa de implementaçao PC+4 
 /*INSTRUCTION_FETCH pc_plus_4(

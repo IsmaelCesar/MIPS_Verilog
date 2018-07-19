@@ -15,6 +15,7 @@ module IMEM (
 );
 
 parameter SIZE = 32'h0800;
+//<Endereco absoluto>
 parameter MEMORY_FILE = "memory.bin"; // Tem que colocar o endereço absoluto pra funcionar normalmente
 
 input address;
@@ -34,6 +35,6 @@ initial begin : load_default_memory
   
 end
 
-assign instruction = ROM[address>>2];  
+assign instruction = ROM[(address-4)>>2];  
 
 endmodule
