@@ -30,7 +30,7 @@ wire [31:0] MUX_PC_BRANCH_out;
 wire [31:0] MUX_BRANCH_JUMP_out;
 wire [31:0] MUX_ALU_SRC_REG_IMM_out;
 wire [31:0] MUX_REG_SRC_ALU_MEM_out;
-wire [4:0] MUX_WRITE_RS_RD_out;
+wire [4:0] MUX_WRITE_RT_RD_out;
 
 wire [31:0] REGISTER_BANK_read_data_1_out;
 wire [31:0] REGISTER_BANK_read_data_2_out;
@@ -51,6 +51,7 @@ wire [31:0] DMEM_out;
 wire [31:0] SHIFT_JUMP_out;
 
 wire CONTROL_branch;
+wire CMP_BRANCH_OUT;
 wire CONTROL_read_mem;
 wire CONTROL_write_mem;
 wire CONTROL_write_reg;
@@ -60,6 +61,7 @@ wire [5:0] CONTROL_alu_op;
 wire CONTROL_mux_branch_jump;
 wire CONTROL_mux_pc_branch;
 wire CONTROL_mux_reg_src_alu_mem;
+wire CONTROL_mux_j_type_addr_to_write;
 
 assign FOUR_CONST = 4;
 
@@ -75,7 +77,8 @@ CONTROL control (
   .alu_op(CONTROL_alu_op),
   .mux_branch_jump(CONTROL_mux_branch_jump),
   .mux_pc_branch(CONTROL_mux_pc_branch),
-  .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem)
+  .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem),
+  .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write)
 );
 
 REGISTER pc (
@@ -99,13 +102,13 @@ IMEM imem (
 	.adder_pc_4(PC_out)
 );*/
 
-MUX21 #(
+/*MUX31 #(
   .DATA_WIDTH(5)
-) 
-mux_write_rs_rd (
+);*/ 
+MUX21 mux_write_rt_rd (
   .A(IMEM_instr[20:16]),
   .B(IMEM_instr[15:11]),
-  .O(MUX_WRITE_RS_RD_out),
+  .O(MUX_WRITE_RT_RD_out),
   .S(CONTROL_mux_write_rt_rd)
 );
 
@@ -113,7 +116,7 @@ REGISTER_BANK register_bank (
   .clk(clk),
   .write(CONTROL_write_reg),
   .write_data(MUX_REG_SRC_ALU_MEM_out),
-  .write_address(MUX_WRITE_RS_RD_out),
+  .write_address(MUX_WRITE_RT_RD_out),
   .read_address_1(IMEM_instr[25:21]),
   .read_address_2(IMEM_instr[20:16]),
   .read_data_1(REGISTER_BANK_read_data_1_out),
@@ -124,9 +127,6 @@ SIGN_EXTEND sign_extend (
   .A(IMEM_instr[15:0]),
   .O(SIGN_EXTEND_out)
 );
-
-
-
 
 
 MUX21 mux_alu_src_reg_imm (
@@ -143,6 +143,15 @@ ULA ula (
   .OP(ALU_CONTROL_out),          
   .Z(ULA_zero)            
 );
+
+
+//Comparador branch
+CMP_BRANCH branch_type_comarator(
+	.branch(CONTROL_branch),
+	.Z(ULA_zero),
+	.S(CMP_BRANCH_OUT)
+);
+
 
 ALU_CONTROL alu_control (
   .funct(IMEM_instr[5:0]),
@@ -193,6 +202,14 @@ MUX21 mux_pc_branch (
 SHIFT_LEFT_2 shift_jump (
   .A({6'b000000, IMEM_instr[25:0]}),
   .O(SHIFT_JUMP_out)
+);
+
+//Caso seja uma instrução de JAL O pc+4 irá para o write data
+MUX21 j_type_addr_to_write(
+	.A(PC_out),
+	.B(MUX_REG_SRC_ALU_MEM_out),
+	.O(MUX_REG_PC_ALU_MEM_OUT),
+	.S(CONTROL_mux_j_type_addr_to_write)
 );
 
 MUX21 branch_jump (

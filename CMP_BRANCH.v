@@ -12,18 +12,23 @@
 */
 
 
-module CMP_BRANCH(branch,Z,S);
+module CMP_BRANCH(
+	branch,
+	Z,
+	S
+);
+
+input branch;
+input Z;
+output S;
 
 wire branch;
 wire Z;
 
-input branch;
-input branch;
-
 reg S;
-output S;
 
-assign S = ((branch && Z) || (branch && !Z));
-	
+always@* begin
+	S = ((branch & Z) || (branch & !Z));
+end	
 
 endmodule

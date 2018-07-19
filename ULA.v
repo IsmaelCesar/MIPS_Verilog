@@ -25,7 +25,7 @@ output Z;
 wire signed [31:0] A, B;
 
 
-wire unsigned [31:0] C,D;
+reg unsigned [31:0] C,D;
 //reg unsigned [31:0] E;
 
 wire [3:0] OP;
@@ -41,16 +41,16 @@ always @ (A or B or OP) begin : operacoes_ula
 	
 	//Fazendo atribuiçoes para registradores usigned *GAMBIARRA!!!!!
 	if(A < 32'h0)begin
-		C = -A
+		C = -A;
 	 end
 	 else begin
-		C = A
+		C = A;
 	 end
 	 if(B < 32'h0)begin
-		D = -B
+		D = -B;
 	 end
 	 else begin
-		D = B
+		D = B;
 	 end
 
   case (OP)
@@ -114,6 +114,11 @@ always @ (A or B or OP) begin : operacoes_ula
   //S = unsigned A * B
   4'b1001:begin
 	 S = C * B;
+  end
+  
+  //Se for break 
+  4'b1111:begin
+	 $finish;
   end
   
   default: begin

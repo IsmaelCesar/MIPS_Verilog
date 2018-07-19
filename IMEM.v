@@ -1,11 +1,11 @@
 /**
  * Universidade Federal Rural de Pernambuco
- * Departamento de Estatística e Informática
- * Disciplina: Arquitetura e Organização de Computadores
+ * Departamento de Estatï¿½stica e Informï¿½tica
+ * Disciplina: Arquitetura e Organizaï¿½ï¿½o de Computadores
  * 
- * Memória de instruções.
+ * Memï¿½ria de instruï¿½ï¿½es.
  *
- * @author André Aziz (andreaziz@deinfo.ufrpe.br)
+ * @author Andrï¿½ Aziz (andreaziz@deinfo.ufrpe.br)
  */
 //`define MEMORY_HEX
  
@@ -14,8 +14,8 @@ module IMEM (
   instruction
 );
 
-parameter SIZE = 32'h8000;
-parameter MEMORY_FILE = "memory.bin";
+parameter SIZE = 32'h0800;
+parameter MEMORY_FILE = "memory.bin"; // Tem que colocar o endereÃ§o absoluto pra funcionar normalmente
 
 input address;
 output instruction;
