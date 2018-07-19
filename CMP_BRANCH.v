@@ -20,12 +20,13 @@ module CMP_BRANCH(
 
 input branch;
 input Z;
+output S;
 
 wire branch;
 wire Z;
 
 reg S;
-output S;
+
 always@* begin
 	S = ((branch & Z) || (branch & !Z));
 end	

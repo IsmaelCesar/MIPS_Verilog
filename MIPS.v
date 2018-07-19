@@ -51,6 +51,7 @@ wire [31:0] DMEM_out;
 wire [31:0] SHIFT_JUMP_out;
 
 wire CONTROL_branch;
+wire CMP_BRANCH_OUT;
 wire CONTROL_read_mem;
 wire CONTROL_write_mem;
 wire CONTROL_write_reg;
@@ -148,7 +149,7 @@ ULA ula (
 CMP_BRANCH branch_type_comarator(
 	.branch(CONTROL_branch),
 	.Z(ULA_zero),
-	.S(CONTROL_branch)
+	.S(CMP_BRANCH_OUT)
 );
 
 
