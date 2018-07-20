@@ -312,7 +312,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_branch_jump 		= 0;
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 0;
-		mux_j_type_addr_to_write = 1; // Escreve em $RA
+		mux_j_type_addr_to_write = 1; // Nao Escreve em $RA
 	 end
 	 
     endcase

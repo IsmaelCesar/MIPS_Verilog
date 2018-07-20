@@ -210,17 +210,9 @@ MUX21 mux_pc_branch (
 );
 
 SHIFT_LEFT_2 shift_jump (
-  .A({6'b000000, IMEM_instr[25:0]}),
+  .A({6'b000000, PC_out[25:0]}), // Antes era IMEM_instr[25:0]
   .O(SHIFT_JUMP_out)
 );
-
-//Caso seja uma instrução de JAL O pc+4 irá para o write data
-/*MUX21 j_type_addr_to_write(
-	.A(PC_out),
-	.B(MUX_REG_SRC_ALU_MEM_out),
-	.O(MUX_REG_PC_ALU_MEM_OUT),
-	.S(CONTROL_mux_j_type_addr_to_write)
-);*/
 
 MUX21 branch_jump (
   .A({PC_out[31:28], SHIFT_JUMP_out[27:0]}),
