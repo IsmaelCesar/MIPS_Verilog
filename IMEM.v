@@ -16,7 +16,7 @@ module IMEM (
 
 parameter SIZE = 32'h0800;
 //<Endereco absoluto>
-parameter MEMORY_FILE = "C:/Users/Familia/Documents/GitHub/mips_verilog/memory.bin"; // Tem que colocar o endereço absoluto pra funcionar normalmente
+parameter MEMORY_FILE = "memmory.bin"; // Tem que colocar o endereço absoluto pra funcionar normalmente
 
 input address;
 output instruction;
