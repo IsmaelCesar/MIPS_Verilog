@@ -44,7 +44,7 @@ assign control = (op == 6'b000000) ? 4'b0010 : // LW & ADDI
 					  (op == 6'b00010 && funct == 6'b101011) ? 4'b1000 : //mult
 					  (op == 6'b00010 && funct == 6'b101011) ? 4'b1001 : //multu
 					  (op == 6'b00010 && funct == 6'b101011) ? 4'b0110 : //sltu
-					  (op == 6'b00010 && funct == 6'b001101) ? 4'b1111 : //Implementando break (Break será considerara uma tipo R que só chama a função $finish)
+					  (op == 6'b00010 && funct == 6'b011010) ? 4'b1111 : //Implementando break (Break será considerara uma tipo R que só chama a função $finish)
                   4'b0000;
 
 endmodule
