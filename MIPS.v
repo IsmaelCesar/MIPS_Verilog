@@ -95,18 +95,14 @@ REGISTER pc (
 );
 
 
-//Primeira tentativa de implementaçao PC+4 
-/*INSTRUCTION_FETCH pc_plus_4(
-	.clk(clk),
-	.nrst(nrst),
-	.pc_out(PC_out),
-	.constant_4(FOUR_CONST),
-	.adder_pc_4(PC_out)
-);*/
 
-/*MUX31 #(
-  .DATA_WIDTH(5)
-);*/ 
+IMEM imem (
+  .address(PC_out),
+  .instruction(IMEM_instr)
+);
+
+
+
 MUX21 mux_write_rt_rd (
   .A(IMEM_instr[20:16]),
   .B(IMEM_instr[15:11]),

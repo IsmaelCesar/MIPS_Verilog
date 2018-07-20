@@ -15,8 +15,8 @@ module IMEM (
 );
 
 parameter SIZE = 32'h0800;
-//<Endereco absoluto>
 parameter MEMORY_FILE = "memmory.bin"; // Tem que colocar o endereço absoluto pra funcionar normalmente
+
 
 input address;
 output instruction;

@@ -10,7 +10,8 @@
  
  
  
- `define RETURN_ADDRES_REG_NUMBER 32'h1F //31 -> Endereço de RA no MIPS reference data
+ `define RETURN_ADDRES_REG_NUMBER 32'h1F; //31 -> Endereço de RA no MIPS reference data
+ `define PC_ADDRES_REG_NUMBER 	 32'h1F; //31 -> Endereço de RA no MIPS reference data
  
  /*Sinal que entra no MUX é modificado
 	Caso a instrução seja  jal, O mux manda o RA como registrador destino
