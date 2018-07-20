@@ -29,7 +29,11 @@ wire [31:0] IMEM_instr;
 wire [31:0] MUX_PC_BRANCH_out;
 wire [31:0] MUX_BRANCH_JUMP_out;
 wire [31:0] MUX_ALU_SRC_REG_IMM_out;
+
+
 wire [31:0] MUX_REG_SRC_ALU_MEM_out;
+wire [31:0] MUX_REG_SELECT_JAL_ALU_MEM_out;
+
 wire [4:0] MUX_WRITE_RT_RD_out;
 
 wire [31:0] REGISTER_BANK_read_data_1_out;
@@ -55,7 +59,7 @@ wire CMP_BRANCH_OUT;
 wire CONTROL_read_mem;
 wire CONTROL_write_mem;
 wire CONTROL_write_reg;
-wire CONTROL_mux_write_rt_rd;
+wire [1:0]CONTROL_mux_write_rt_rd;
 wire CONTROL_mux_alu_src_reg_imm;
 wire [5:0] CONTROL_alu_op;
 wire CONTROL_mux_branch_jump;
@@ -82,10 +86,6 @@ CONTROL control (
 );
 
 
-IMEM imem (
-  .address(PC_out),
-  .instruction(IMEM_instr)
-);
 
 REGISTER pc (
   .clk(clk),
@@ -103,17 +103,29 @@ IMEM imem (
 
 
 
-MUX21 mux_write_rt_rd (
+MUX31 mux_write_rt_rd (
   .A(IMEM_instr[20:16]),
   .B(IMEM_instr[15:11]),
   .O(MUX_WRITE_RT_RD_out),
   .S(CONTROL_mux_write_rt_rd)
 );
 
+
+/**
+* Se o sinal CONTROL_mux_j_type_addr_to_write == 0, retorna o valor a ser gravado no $ra
+*/
+MUX21 select_jal_alu_mem_src(
+	.A(PC_out),
+	.B(MUX_REG_SRC_ALU_MEM_out),
+	.O(MUX_REG_SELECT_JAL_ALU_MEM_out),
+	.S(CONTROL_mux_j_type_addr_to_write)
+);
+
+
 REGISTER_BANK register_bank (
   .clk(clk),
   .write(CONTROL_write_reg),
-  .write_data(MUX_REG_SRC_ALU_MEM_out),
+  .write_data(MUX_REG_SELECT_JAL_ALU_MEM_out),
   .write_address(MUX_WRITE_RT_RD_out),
   .read_address_1(IMEM_instr[25:21]),
   .read_address_2(IMEM_instr[20:16]),
@@ -203,12 +215,12 @@ SHIFT_LEFT_2 shift_jump (
 );
 
 //Caso seja uma instrução de JAL O pc+4 irá para o write data
-MUX21 j_type_addr_to_write(
+/*MUX21 j_type_addr_to_write(
 	.A(PC_out),
 	.B(MUX_REG_SRC_ALU_MEM_out),
 	.O(MUX_REG_PC_ALU_MEM_OUT),
 	.S(CONTROL_mux_j_type_addr_to_write)
-);
+);*/
 
 MUX21 branch_jump (
   .A({PC_out[31:28], SHIFT_JUMP_out[27:0]}),
