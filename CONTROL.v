@@ -216,6 +216,20 @@ always @(nrst, opcode) begin : decode_thread
 		mux_j_type_addr_to_write = 1;
     end
 	 
+	 `OPCODE_LUI: begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 0;
+      write_reg 		= 1;
+      alu_op 			= `OPCODE_LUI;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 1;  
+		mux_j_type_addr_to_write = 1;
+    end
+	 
 	 `OPCODE_ANDI: begin
       branch 			= 0;
       read_mem 			= 0;

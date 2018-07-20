@@ -1,0 +1,299 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Familia\Documents\GitHub\mips_verilog\simulation\modelsim
+vADDER
+IA2@Wo37eQ]VXiOdNb2Yeh1
+V`f1SQ67<eh2QF@8`azZ?j2
+Z1 dC:\Users\Familia\Documents\GitHub\mips_verilog\simulation\modelsim
+w1496801584
+8C:/Users/Familia/Documents/GitHub/mips_verilog/ADDER.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/ADDER.v
+L0 10
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+Z4 !s92 -vlog01compat -work work +incdir+C:/Users/Familia/Documents/GitHub/mips_verilog -O0
+n@a@d@d@e@r
+!i10b 1
+!s100 1aAH^^2CK?Yn[6Z0T>DzV0
+!s85 0
+!s108 1531967552.812000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/ADDER.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/ADDER.v|
+!s101 -O0
+vALU_CONTROL
+Im0Aek0fhEVYTUF?=SQATg0
+V2:R8M>ooIkz[ZUaSEPMO51
+R1
+Z5 w1531967420
+8C:/Users/Familia/Documents/GitHub/mips_verilog/ALU_CONTROL.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/ALU_CONTROL.v
+L0 10
+R2
+r1
+31
+R3
+R4
+n@a@l@u_@c@o@n@t@r@o@l
+!i10b 1
+!s100 0LjgLg0UcU`W5ZhaLA]660
+!s85 0
+!s108 1531967552.647000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/ALU_CONTROL.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/ALU_CONTROL.v|
+!s101 -O0
+vCMP_BRANCH
+!i10b 1
+!s100 E@zW]AXM[BHJ@gjoWSMcX1
+I^4??1<nS?2LR>A2J3WEG`2
+VXCio=??2;CV4In5?`a5ih0
+R1
+R5
+8C:/Users/Familia/Documents/GitHub/mips_verilog/CMP_BRANCH.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/CMP_BRANCH.v
+L0 15
+R2
+r1
+!s85 0
+31
+!s108 1531967553.405000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/CMP_BRANCH.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/CMP_BRANCH.v|
+!s101 -O0
+R3
+R4
+n@c@m@p_@b@r@a@n@c@h
+vCONTROL
+In>XS@<SEjN50Q;IU9m?fa1
+VI4VE4AY^24_`4kfZHzZUK0
+R1
+w1530758022
+8C:/Users/Familia/Documents/GitHub/mips_verilog/CONTROL.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/CONTROL.v
+L0 44
+R2
+r1
+31
+R3
+R4
+n@c@o@n@t@r@o@l
+!i10b 1
+!s100 ?]Z:Kl`XVa`oRhO1R0T2E3
+!s85 0
+!s108 1531967552.464000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/CONTROL.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/CONTROL.v|
+!s101 -O0
+vDMEM
+Ig=2Ua1zc9N25M=D6djS3g3
+V[l29[b]hk;?RWYfIOj5dN1
+R1
+w1530753572
+8C:/Users/Familia/Documents/GitHub/mips_verilog/DMEM.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/DMEM.v
+L0 11
+R2
+r1
+31
+R3
+R4
+n@d@m@e@m
+!i10b 1
+!s100 ;FhDo=n[T@>XG]kff>NFn0
+!s85 0
+!s108 1531967552.343000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/DMEM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/DMEM.v|
+!s101 -O0
+vIMEM
+I0Y<<2Y?m_5FVdMJTN2ITE2
+V?WCf@@YfG6R@]V0[0GzA21
+R1
+w1531966787
+8C:/Users/Familia/Documents/GitHub/mips_verilog/IMEM.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/IMEM.v
+L0 12
+R2
+r1
+31
+R3
+R4
+n@i@m@e@m
+!i10b 1
+!s100 `j9@JAXO3d9jfCl;R=mSR3
+!s85 0
+!s108 1531967552.181000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/IMEM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/IMEM.v|
+!s101 -O0
+vMIPS
+Imz30H:^]^B_n_^W:cO[@C0
+VJnH5d^W_19Cn_]1LK2JfA2
+R1
+R5
+8C:/Users/Familia/Documents/GitHub/mips_verilog/MIPS.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/MIPS.v
+L0 10
+R2
+r1
+31
+R3
+R4
+n@m@i@p@s
+!i10b 1
+!s100 eMm8fRCabBn?zDFeHQ96K0
+!s85 0
+!s108 1531967552.068000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/MIPS.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/MIPS.v|
+!s101 -O0
+vMUX21
+II^eW_F[J`7`KBm8e6IKgY2
+V3DoJ:GN3XC3K<=EgzN8>V2
+R1
+w1496805954
+8C:/Users/Familia/Documents/GitHub/mips_verilog/MUX21.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/MUX21.v
+L0 10
+R2
+r1
+31
+R3
+R4
+n@m@u@x21
+!i10b 1
+!s100 ]CYf4Lb`lkjEQf5m?Bj8P0
+!s85 0
+!s108 1531967551.936000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/MUX21.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/MUX21.v|
+!s101 -O0
+vMUX31
+IfLJa:Xiff8UbZKVo]Do?C1
+VNEkD<=YGNJ15mVXU5^A8c3
+R1
+w1530756948
+8C:/Users/Familia/Documents/GitHub/mips_verilog/mux31.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/mux31.v
+L0 19
+R2
+r1
+31
+R3
+R4
+n@m@u@x31
+!i10b 1
+!s100 ;:J4`YjN]Q07e10mLBz340
+!s85 0
+!s108 1531967552.941000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/mux31.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/mux31.v|
+!s101 -O0
+vREGISTER
+I=kFc48BIT3S>?4AV?m24>0
+VkG_jH=caQFE>UY5d]:O7A1
+R1
+w1496799526
+8C:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER.v
+L0 10
+R2
+r1
+31
+R3
+R4
+n@r@e@g@i@s@t@e@r
+!i10b 1
+!s100 Z0kGFWiC@n>27h`VeO2G80
+!s85 0
+!s108 1531967551.756000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER.v|
+!s101 -O0
+vREGISTER_BANK
+IklP46R2MAgWCT>[XPN6YX3
+V=PN=ZmBY@RHPTX0OGNjGg3
+R1
+w1496896321
+8C:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER_BANK.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER_BANK.v
+L0 11
+R2
+r1
+31
+R3
+R4
+n@r@e@g@i@s@t@e@r_@b@a@n@k
+!i10b 1
+!s100 J1VJX1okIE=T;DDhzQg113
+!s85 0
+!s108 1531967551.553000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER_BANK.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/REGISTER_BANK.v|
+!s101 -O0
+vSHIFT_LEFT_2
+I1mCSOB?FgOA:U0EjW80K?0
+V?W2EHCcd[iIi<n?ggcfi;2
+R1
+w1496807828
+8C:/Users/Familia/Documents/GitHub/mips_verilog/SHIFT_LEFT_2.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/SHIFT_LEFT_2.v
+L0 10
+R2
+r1
+31
+R3
+R4
+n@s@h@i@f@t_@l@e@f@t_2
+!i10b 1
+!s100 S<m[2iRHIHGFGF7[A7YGG0
+!s85 0
+!s108 1531967551.379000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/SHIFT_LEFT_2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/SHIFT_LEFT_2.v|
+!s101 -O0
+vSIGN_EXTEND
+I9i47o;_H:OeCTVd4Ta=Y?1
+VN4_g^_]IGVUJV5K3dYO@62
+R1
+w1496801730
+8C:/Users/Familia/Documents/GitHub/mips_verilog/SIGN_EXTEND.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/SIGN_EXTEND.v
+L0 10
+R2
+r1
+31
+R3
+R4
+n@s@i@g@n_@e@x@t@e@n@d
+!i10b 1
+!s100 IfC`V1m8h4<aA6EamP3iI2
+!s85 0
+!s108 1531967551.208000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/SIGN_EXTEND.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/SIGN_EXTEND.v|
+!s101 -O0
+vULA
+IU<WSSGIjZf;c_ZlOY8CFz0
+V4?V1K<C95fO>L<KHRG3LF2
+R1
+R5
+8C:/Users/Familia/Documents/GitHub/mips_verilog/ULA.v
+FC:/Users/Familia/Documents/GitHub/mips_verilog/ULA.v
+L0 11
+R2
+r1
+31
+R3
+n@u@l@a
+R4
+!i10b 1
+!s100 J6[c[ze_N<RKV6E[TBDX73
+!s85 0
+!s108 1531967551.058000
+!s107 C:/Users/Familia/Documents/GitHub/mips_verilog/ULA.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Familia/Documents/GitHub/mips_verilog|C:/Users/Familia/Documents/GitHub/mips_verilog/ULA.v|
+!s101 -O0
