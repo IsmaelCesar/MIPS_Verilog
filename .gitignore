@@ -18,3 +18,10 @@ MIPS\.qws
 .simulation/*
 
 Mars4_5.jar
+simulation/
+
+output_files/
+
+incremental_db/
+
+db/
