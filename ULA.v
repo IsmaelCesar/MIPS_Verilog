@@ -102,7 +102,7 @@ always @ (A or B or OP) begin : operacoes_ula
   end
   
   //S = unsigned (A < B)? 1 : 0; 
-  4'b0110: begin 
+  4'b1011: begin 
 	 S =  (C < D)? 1 : 0;
   end
   
