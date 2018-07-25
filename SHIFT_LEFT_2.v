@@ -18,9 +18,9 @@ output O;
 wire [31:0] A;
 wire [31:0] O;
 
-assign O = (A-4) << 2;
-/*
+//assign O = A << 2;
+
 assign O[31:2] = A[29:0];
 assign O[1:0] = 0;
-*/
+
 endmodule

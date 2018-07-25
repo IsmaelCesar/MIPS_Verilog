@@ -1,10 +1,13 @@
 .globl main
 main:
+addi $t0, $zero, 1 
+addi $t1, $zero, 2 
 
-addi $t0, $zero, 4
-add $a0,$zero,$t0
+jal other
 
-break
+sub $t0, $t0,$t2
 
-fatorial:
-	
+other:
+addi $t2, $zero, 3 
+addi $t3, $zero, 4 
+jr $ra 

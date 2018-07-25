@@ -55,7 +55,8 @@ module CONTROL(
   mux_branch_jump,
   mux_pc_branch,
   mux_reg_src_alu_mem,
-  mux_j_type_addr_to_write  
+  mux_j_type_addr_to_write,
+  mux_j_type_addr_to_read
 );
 
 input nrst;
@@ -71,6 +72,7 @@ output mux_branch_jump;
 output mux_pc_branch;
 output mux_reg_src_alu_mem;
 output mux_j_type_addr_to_write;
+output mux_j_type_addr_to_read; // Sinal para jr
 
 wire nrst;
 wire [5:0] opcode;
@@ -85,6 +87,7 @@ reg mux_branch_jump;
 reg mux_pc_branch;
 reg mux_reg_src_alu_mem;
 reg mux_j_type_addr_to_write;
+reg mux_j_type_addr_to_read; //Sinal para JR
 
 initial begin
   branch 		= 0;
@@ -114,6 +117,7 @@ always @(nrst, opcode) begin : decode_thread
     mux_pc_branch 	= 0;
     mux_reg_src_alu_mem = 1;  
 	 mux_j_type_addr_to_write = 1;
+	 mux_j_type_addr_to_read =  1;
   end
   else begin
     case (opcode)
@@ -129,7 +133,8 @@ always @(nrst, opcode) begin : decode_thread
       mux_branch_jump 		= 1;
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;
-		mux_j_type_addr_to_write = 1;		
+		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;		
     end
   
     `OPCODE_ADDI: begin
@@ -144,6 +149,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
  
     `OPCODE_LW: begin
@@ -158,6 +164,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 
     `OPCODE_SW: begin
@@ -172,6 +179,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 
     `OPCODE_BEQ: begin
@@ -186,6 +194,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 1;
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 	 
 	 `OPCODE_BNE: begin
@@ -200,6 +209,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 1;
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 		
 	//Implementando as instruçoes tipo I
@@ -215,6 +225,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 	 
 	 `OPCODE_LUI: begin
@@ -229,6 +240,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 	 
 	 `OPCODE_ANDI: begin
@@ -243,6 +255,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 	
 	`OPCODE_SLTI: begin
@@ -257,6 +270,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 	 
 	 `OPCODE_SLTIU: begin
@@ -271,6 +285,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 		
     `OPCODE_J: begin
@@ -285,6 +300,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
     end
 	 
 	 `OPCODE_JAL: begin
@@ -299,20 +315,22 @@ always @(nrst, opcode) begin : decode_thread
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 0;
 		mux_j_type_addr_to_write = 0; // Escreve em $RA
+		mux_j_type_addr_to_read =  1;
 	 end
 	 
 	 `OPCODE_JR: begin
 		branch 			= 0;
       read_mem 			= 0;
       write_mem 		= 0;
-      write_reg 		= 1;
+      write_reg 		= 0;
       alu_op 			= `ALUOP_TIPO_R;
       mux_write_rt_rd 		= 2;
       mux_alu_src_reg_imm 	= 0;
       mux_branch_jump 		= 0;
       mux_pc_branch 		= 0;
       mux_reg_src_alu_mem 	= 0;
-		mux_j_type_addr_to_write = 1; // Nao Escreve em $RA
+		mux_j_type_addr_to_write = 0; // Nao Escreve em $RA
+		mux_j_type_addr_to_read = 0;
 	 end
 	 
     endcase

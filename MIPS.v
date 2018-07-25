@@ -66,8 +66,13 @@ wire CONTROL_mux_branch_jump;
 wire CONTROL_mux_pc_branch;
 wire CONTROL_mux_reg_src_alu_mem;
 wire CONTROL_mux_j_type_addr_to_write;
-
+wire CONTROL_mux_j_type_addr_to_read;
 assign FOUR_CONST = 4;
+
+//Implementacoes  para jr
+wire [5:0] select_jr_or_instruction_addr_out1;
+wire [5:0] select_jr_or_instruction_addr_out2;
+
 
 CONTROL control (
   .nrst(nrst),
@@ -82,7 +87,8 @@ CONTROL control (
   .mux_branch_jump(CONTROL_mux_branch_jump),
   .mux_pc_branch(CONTROL_mux_pc_branch),
   .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem),
-  .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write)
+  .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write),
+  .mux_j_type_addr_to_read(CONTROL_mux_j_type_addr_to_read)
 );
 
 
@@ -102,7 +108,10 @@ IMEM imem (
 );
 
 
-
+/*
+* Multiplexador auxiliar para mandar o endereço do registrador $ra
+* caso a instruçao seja um jr ou um jall
+*/
 MUX31 mux_write_rt_rd (
   .A(IMEM_instr[20:16]),
   .B(IMEM_instr[15:11]),
@@ -122,13 +131,26 @@ MUX21 select_jal_alu_mem_src(
 );
 
 
+/*
+* Implementando multiplexador para escolher entre endereços de registradores
+* caso seja um JR então é lido retornando o endereço de $ra, Multiplexador auxiliar
+*/
+MUX41 select_jr_or_instruction_addr(
+	.A(IMEM_instr[25:21]),
+	.B(IMEM_instr[20:16]),
+	.O1(select_jr_or_instruction_addr_out1),
+	.O2(select_jr_or_instruction_addr_out2),
+	.S(CONTROL_mux_j_type_addr_to_read)
+);
+
+
 REGISTER_BANK register_bank (
   .clk(clk),
   .write(CONTROL_write_reg),
   .write_data(MUX_REG_SELECT_JAL_ALU_MEM_out),
   .write_address(MUX_WRITE_RT_RD_out),
-  .read_address_1(IMEM_instr[25:21]),
-  .read_address_2(IMEM_instr[20:16]),
+  .read_address_1(select_jr_or_instruction_addr_out1),//IMEM_instr[25:21]
+  .read_address_2(select_jr_or_instruction_addr_out2),//IMEM_instr[20:16]
   .read_data_1(REGISTER_BANK_read_data_1_out),
   .read_data_2(REGISTER_BANK_read_data_2_out)
 );
@@ -188,7 +210,7 @@ MUX21 mux_reg_src_alu_mem (
 ADDER adder_pc_incr (
   .A(PC_out),
   .B(FOUR_CONST),
-  .O(ADDER_PC_INCR_out)
+  .O(ADDER_PC_INCR_out) // <- Essa saida foi reutilizada mais abaixo
 );
 
 SHIFT_LEFT_2 shift_branch (
@@ -209,15 +231,23 @@ MUX21 mux_pc_branch (
   .S(CONTROL_mux_pc_branch)
 );
 
+MUX21 mux_set_return_addr(
+	.A(REGISTER_BANK_read_data_1_out),
+	.B({6'b000000, IMEM_instr[25:0]}),
+	.O(),
+	.S(CONTROL_mux_j_type_addr_to_read)
+);
+
+
 SHIFT_LEFT_2 shift_jump (
-  .A({6'b000000, PC_out[25:0]}), // Antes era IMEM_instr[25:0]
+  .A({6'b000000, IMEM_instr[25:0]}),// 
   .O(SHIFT_JUMP_out)
 );
 
 MUX21 branch_jump (
-  .A({PC_out[31:28], SHIFT_JUMP_out[27:0]}),
+  .A({ADDER_PC_INCR_out[31:28], SHIFT_JUMP_out[27:0]}), //PC_out[31:28]
   .B(MUX_PC_BRANCH_out),
-  .O(MUX_BRANCH_JUMP_out),
+  .O(MUX_BRANCH_JUMP_out),//MUX_BRANCH_JUMP_out
   .S(CONTROL_mux_branch_jump)
 );
 
