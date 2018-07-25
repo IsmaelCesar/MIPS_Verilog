@@ -241,7 +241,7 @@ SHIFT_LEFT_2 shift_jump (
 *Multiplexador auxiliar para carregar os dados lidos no RA
 */
 MUX21 mux_set_return_addr(
-	.A(REGISTER_BANK_read_data_2_out),
+	.A(REGISTER_BANK_read_data_1_out),
 	.B(SHIFT_JUMP_out),
 	.O(mux_set_return_addr_out),
 	.S(CONTROL_mux_j_type_addr_to_read) //O sinal dizpara o RA se for iqual a zero
@@ -250,7 +250,7 @@ MUX21 mux_set_return_addr(
 MUX21 branch_jump (
   .A({ADDER_PC_INCR_out[31:28], mux_set_return_addr_out[27:0]}), //{PC_out[31:28], SHIFT_JUMP_out[27:0]}
   .B(MUX_PC_BRANCH_out),
-  .O(MUX_BRANCH_JUMP_out),//MUX_BRANCH_JUMP_out
+  .O(PC_out),//MUX_BRANCH_JUMP_out
   .S(CONTROL_mux_branch_jump)
 );
 
