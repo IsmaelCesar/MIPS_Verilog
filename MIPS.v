@@ -250,7 +250,7 @@ MUX21 mux_set_return_addr(
 MUX21 branch_jump (
   .A({ADDER_PC_INCR_out[31:28], mux_set_return_addr_out[27:0]}), //{PC_out[31:28], SHIFT_JUMP_out[27:0]}
   .B(MUX_PC_BRANCH_out),
-  .O(PC_out),//MUX_BRANCH_JUMP_out
+  .O(MUX_BRANCH_JUMP_out),//
   .S(CONTROL_mux_branch_jump)
 );
 

@@ -34,7 +34,7 @@
 `define OPCODE_LUI    6'b001111
 
 `define OPCODE_JAL 	 6'b000011
-`define OPCODE_JR     6'b001000
+`define OPCODE_JR     6'b000000
 
 `define ALUOP_ADDI    6'b000000
 `define ALUOP_LW      6'b000000
@@ -332,7 +332,7 @@ always @(nrst, opcode) begin : decode_thread
 		mux_j_type_addr_to_write = 0; // Escreve em $RA
 		mux_j_type_addr_to_read =  1;
 	 end
-	 
+	 /*
 	 `OPCODE_JR: begin
 		branch 			= 0;
       read_mem 			= 0;
@@ -347,7 +347,7 @@ always @(nrst, opcode) begin : decode_thread
 		mux_j_type_addr_to_write = 1; // Nao Escreve em $RA
 		mux_j_type_addr_to_read = 0;
 	 end
-	 
+	 */
     endcase
   end
 end
