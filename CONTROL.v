@@ -332,6 +332,68 @@ always @(nrst, opcode) begin : decode_thread
 		mux_j_type_addr_to_write = 0; // Escreve em $RA
 		mux_j_type_addr_to_read =  1;
 	 end
+	 
+	 //Outros LOADS e Stores
+	 `OPCODE_SH:begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 1;
+      write_reg 		= 0;
+      alu_op 			= `OPCODE_SH;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 0;  
+		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
+		end
+	 
+	 `OPCODE_SB:begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 1;
+      write_reg 		= 0;
+      alu_op 			= `OPCODE_SB;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 0;  
+		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
+		end
+		
+	`OPCODE_LB:begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 1;
+      write_reg 		= 0;
+      alu_op 			= `ALUOP_LW;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 0;  
+		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
+		end
+		
+	`OPCODE_LH:begin
+      branch 			= 0;
+      read_mem 			= 0;
+      write_mem 		= 1;
+      write_reg 		= 0;
+      alu_op 			= `ALUOP_LW;
+      mux_write_rt_rd 		= 0;
+      mux_alu_src_reg_imm 	= 1;
+      mux_branch_jump 		= 1;
+      mux_pc_branch 		= 0;
+      mux_reg_src_alu_mem 	= 0;  
+		mux_j_type_addr_to_write = 1;
+		mux_j_type_addr_to_read =  1;
+		end
+	 
 	 /*
 	 `OPCODE_JR: begin
 		branch 			= 0;

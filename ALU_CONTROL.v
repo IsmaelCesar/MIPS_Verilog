@@ -21,7 +21,7 @@ wire [5:0] funct;
 wire [5:0] op;
 wire [3:0] control;
 
-assign control = (op == 6'b000000) ? 4'b0010 : // LW & ADDI
+assign control = (op == 6'b000000) ? 4'b0010 : // LW & ADDI ,  SW
                  (op == 6'b000001) ? 4'b0110 :
 						//Tipo I -> O próprio OP code da instruçao é utilizado
 					  (op == 6'b001101) ? 4'b0001 : //ori
@@ -30,7 +30,10 @@ assign control = (op == 6'b000000) ? 4'b0010 : // LW & ADDI
 					  (op == 6'b001010) ? 4'b0111 : //slti
 					  (op == 6'b001011) ? 4'b1011 : //sltiu
 					  (op == 6'b001111) ? 4'b1010 : //lui
-					  
+					 //Outros tipos store
+					  (op == 6'b101001) ? 4'b1100 : //sb
+					  (op == 6'b101000) ? 4'b1101 : //sh
+					  					  
 					  //Tipo R -> Pois precisam do campo funct
 					  (op == 6'b00010 && funct == 6'b100100) ? 4'b0000 :
                  (op == 6'b00010 && funct == 6'b100101) ? 4'b0001 :
