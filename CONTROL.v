@@ -25,8 +25,8 @@
 `define OPCODE_ADDIU  6'b001001
 
 		//Outros tipos de Stores and Loads
-`define OPCODE_SB     6'b101001
-`define OPCODE_SH     6'b101000
+`define OPCODE_SB     6'b101000
+`define OPCODE_SH     6'b101001
 `define OPCODE_LH     6'b100001
 `define OPCODE_LB     6'b100000	
 `define OPCODE_LHU    6'b100101
@@ -42,6 +42,7 @@
 `define ALUOP_BEQ     6'b000001
 `define ALUOP_TIPO_R  6'b000010
 
+
 module CONTROL(
   nrst,
   opcode,
@@ -56,7 +57,9 @@ module CONTROL(
   mux_pc_branch,
   mux_reg_src_alu_mem,
   mux_j_type_addr_to_write,
-  mux_j_type_addr_to_read
+  mux_j_type_addr_to_read,
+  //CONROLE DE MASCARAa
+  apply_mask
 );
 
 input nrst;
@@ -73,6 +76,7 @@ output mux_pc_branch;
 output mux_reg_src_alu_mem;
 output mux_j_type_addr_to_write;
 output mux_j_type_addr_to_read; // Sinal para jr
+output apply_mask; //controle de mascara
 
 wire nrst;
 wire [5:0] opcode;
@@ -88,6 +92,7 @@ reg mux_pc_branch;
 reg mux_reg_src_alu_mem;
 reg mux_j_type_addr_to_write;
 reg mux_j_type_addr_to_read; //Sinal para JR
+reg [1:0] apply_mask;
 
 initial begin
   branch 		= 0;
@@ -118,6 +123,7 @@ always @(nrst, opcode) begin : decode_thread
     mux_reg_src_alu_mem = 1;  
 	 mux_j_type_addr_to_write = 1;
 	 mux_j_type_addr_to_read =  1;
+	 apply_mask = 0;
   end
   else begin
     case (opcode)
@@ -135,6 +141,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;		
+		apply_mask = 0;
     end
   
     `OPCODE_ADDI: begin
@@ -150,6 +157,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
 	 
 	 `OPCODE_ADDIU: begin
@@ -165,6 +173,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
  
     `OPCODE_LW: begin
@@ -180,6 +189,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
 
     `OPCODE_SW: begin
@@ -195,6 +205,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
 
     `OPCODE_BEQ: begin
@@ -210,6 +221,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
 	 
 	 `OPCODE_BNE: begin
@@ -225,6 +237,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
 		
 	//Implementando as instruçoes tipo I
@@ -241,6 +254,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;
     end
 	 
 	 `OPCODE_LUI: begin
@@ -256,6 +270,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;// controle de mascara
     end
 	 
 	 `OPCODE_ANDI: begin
@@ -271,6 +286,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;// controle de mascara
     end
 	
 	`OPCODE_SLTI: begin
@@ -286,6 +302,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;// controle de mascara
     end
 	 
 	 `OPCODE_SLTIU: begin
@@ -301,6 +318,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 1;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0;// controle de mascara
     end
 		
     `OPCODE_J: begin
@@ -316,6 +334,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0; // controle de mascara
     end
 	 
 	 `OPCODE_JAL: begin
@@ -331,6 +350,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;
 		mux_j_type_addr_to_write = 0; // Escreve em $RA
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 0; // controle de mascara
 	 end
 	 
 	 //Outros LOADS e Stores
@@ -347,6 +367,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 1; // controle de mascara
 		end
 	 
 	 `OPCODE_SB:begin
@@ -362,6 +383,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 2; // controle de mascara
 		end
 		
 	`OPCODE_LB:begin
@@ -377,6 +399,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 2; // controle de mascara
 		end
 		
 	`OPCODE_LH:begin
@@ -392,6 +415,7 @@ always @(nrst, opcode) begin : decode_thread
       mux_reg_src_alu_mem 	= 0;  
 		mux_j_type_addr_to_write = 1;
 		mux_j_type_addr_to_read =  1;
+		apply_mask = 1; // controle de mascara
 		end
 	 
 	 /*

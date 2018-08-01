@@ -31,8 +31,8 @@ assign control = (op == 6'b000000) ? 4'b0010 : // LW & ADDI ,  SW
 					  (op == 6'b001011) ? 4'b1011 : //sltiu
 					  (op == 6'b001111) ? 4'b1010 : //lui
 					 //Outros tipos store
-					  (op == 6'b101001) ? 4'b1100 : //sb
-					  (op == 6'b101000) ? 4'b1101 : //sh
+					  (op == 6'b101001) ? 4'b1101 : //sb
+					  (op == 6'b101000) ? 4'b1100 : //sh
 					  					  
 					  //Tipo R -> Pois precisam do campo funct
 					  (op == 6'b00010 && funct == 6'b100100) ? 4'b0000 :

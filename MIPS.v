@@ -74,6 +74,10 @@ wire [5:0] select_jr_or_instruction_addr_out1;
 wire [5:0] select_jr_or_instruction_addr_out2;
 wire [31:0] mux_set_return_addr_out;
 
+//MASK
+wire [31:0] APPLYMASK_out;
+wire [1:0] CONTROL_apply_mask;
+
 CONTROL control (
   .nrst(nrst),
   .opcode(IMEM_instr[31:26]),
@@ -88,7 +92,8 @@ CONTROL control (
   .mux_pc_branch(CONTROL_mux_pc_branch),
   .mux_reg_src_alu_mem(CONTROL_mux_reg_src_alu_mem),
   .mux_j_type_addr_to_write(CONTROL_mux_j_type_addr_to_write),
-  .mux_j_type_addr_to_read(CONTROL_mux_j_type_addr_to_read)
+  .mux_j_type_addr_to_read(CONTROL_mux_j_type_addr_to_read),
+  .apply_mask(CONTROL_apply_mask)
 );
 
 
@@ -191,9 +196,15 @@ ALU_CONTROL alu_control (
   .control(ALU_CONTROL_out)
 );
 
+APPLYMASK mask(
+.CHOSEN_MASK(CONTROL_apply_mask),
+.DATA(REGISTER_BANK_read_data_2_out),
+.O(APPLYMASK_out)
+);
+
 DMEM dmem (
   .clk(clk),
-  .write_data(REGISTER_BANK_read_data_2_out),
+  .write_data(APPLYMASK_out),//REGISTER_BANK_read_data_2_out
   .read_data(DMEM_out),
   .write(CONTROL_write_mem),
   .read(CONTROL_read_mem),
