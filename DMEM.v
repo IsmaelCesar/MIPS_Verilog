@@ -17,7 +17,7 @@ module DMEM (
   address
 );
 
-parameter SIZE = 32'h0003;
+parameter SIZE = 32'h0800;
 
 input clk;
 input write_data;

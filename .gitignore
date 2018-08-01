@@ -1,2 +1,27 @@
 
 *.bak
+
+MIPS_nativelink_simulation\.rpt
+
+MIPS\.qsf
+
+MIPS\.qpf
+
+MIPS\.qws
+
+.db/*
+
+.incremental_db/*
+
+.output_files/*
+
+.simulation/*
+
+Mars4_5.jar
+simulation/
+
+output_files/
+
+incremental_db/
+
+db/

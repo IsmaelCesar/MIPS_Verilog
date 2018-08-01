@@ -102,7 +102,7 @@ always @ (A or B or OP) begin : operacoes_ula
   end
   
   //S = unsigned (A < B)? 1 : 0; 
-  4'b0110: begin 
+  4'b1011: begin 
 	 S =  (C < D)? 1 : 0;
   end
   
@@ -114,6 +114,19 @@ always @ (A or B or OP) begin : operacoes_ula
   //S = unsigned A * B
   4'b1001:begin
 	 S = C * B;
+  end
+  
+  //LUI
+  4'b1010:begin
+	 S = B << 16;
+  end
+  
+  4'b1100:begin
+   S = A + (B & 32'h000000ff);
+  end
+  
+  4'b1101:begin
+   S = A + (B & 32'h0000ffff);
   end
   
   //Se for break 

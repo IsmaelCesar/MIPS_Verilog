@@ -15,7 +15,8 @@ module IMEM (
 );
 
 parameter SIZE = 32'h0800;
-parameter MEMORY_FILE = "C:/Users/ISMAEL.CESAR/Desktop/mips_verilog/memory.bin"; // Tem que colocar o endereço absoluto pra funcionar normalmente
+parameter MEMORY_FILE = "memory.bin"; // Tem que colocar o endereço absoluto pra funcionar normalmente
+
 
 input address;
 output instruction;
@@ -34,6 +35,6 @@ initial begin : load_default_memory
   
 end
 
-assign instruction = ROM[address>>2];  
+assign instruction = ROM[(address-4)>>2];  
 
 endmodule
